@@ -75,20 +75,20 @@ public class EsipDemoQA {
         logger.warn("Last Name is equal to: " + jPath.getString("lastName"));
         logger.warn("Date Of Birth is equal to: " + jPath.getString("dateOfBirth"));
         System.out.println("");
-//        logger.info("Attempting to connect to database #2 and find newly created Patient by it's id: " + patientID);
-//        response = given().header(header)
-//                .when().get(GET_PATIENT_CLIENT_URL + patientID);
-//        assertEquals(200, response.statusCode());
-//        logger.info("Successfully connected to Server | Status code is: 200");
-//        logger.info("Patien with id: " + patientID + " has below deatails:");
-//        System.out.println("");
-//        System.out.println(response.asString());
-//        System.out.println("");
-//        jPath = new JsonPath(response.asString());
-//        logger.warn("First Name is equal to: " + jPath.getString("firstName"));
-//        logger.warn("Middle Name is equal to: " + jPath.getString("middleName"));
-//        logger.warn("Last Name is equal to: " + jPath.getString("lastName"));
-//        logger.warn("Date Of Birth is equal to: " + jPath.getString("dateOfBirth"));
+        logger.info("Attempting to connect to database #2 and find newly created Patient by it's id: " + patientID);
+        response = given().header(header)
+               .when().get(GET_PATIENT_CLIENT_URL + patientID);
+        assertEquals(200, response.statusCode());
+        logger.info("Successfully connected to Server | Status code is: 200");
+        logger.info("Patien with id: " + patientID + " has below deatails:");
+        System.out.println("");
+        System.out.println(response.asString());
+        System.out.println("");
+        jPath = new JsonPath(response.asString());
+        logger.warn("First Name is equal to: " + jPath.getString("firstName"));
+        logger.warn("Middle Name is equal to: " + jPath.getString("middleName"));
+        logger.warn("Last Name is equal to: " + jPath.getString("lastName"));
+        logger.warn("Date Of Birth is equal to: " + jPath.getString("dateOfBirth"));
     }
 
     public static String convertRequestToString(String path) {
