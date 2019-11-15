@@ -15,9 +15,11 @@ import io.restassured.http.Header;
 import io.restassured.path.json.JsonPath;
 public class EsipDemoQA {
     private static String log4j2ConfigFile = "./Properties/log4j2.xml";
-    String PATIENT_CREATE_URL = "http://52.202.77.60:9090/esip/v1/add/patient";
-    String GET_PATIENT_SERVER_URL = "http://52.202.77.60:9090/esip/v1/get/patient/";
-    String GET_PATIENT_CLIENT_URL = "http://3.133.161.132:9090/esip/v1/get/patient/";
+    private static String API_SOURCE_SERVER_HOST = "http://52.202.77.60:9090/esip/v1/";
+    private static String API_TARGET_SERVER_HOST = "http://3.133.161.132:9090/esip/v1/";
+    String ENDPOINT_SOURCE_CREATE_PATIENT = API_SOURCE_SERVER_HOST+"add/patient";
+    String ENDPOINT_SOURCE_GET_PATIENT = API_SOURCE_SERVER_HOST+"get/patient/";
+    String ENDPOINT_TARGET_GET_PATIENT = API_TARGET_SERVER_HOST+"get/patient/";
     Header header = new Header("Content-Type", "application/json");
     static String patientID = "";
     static String firstName = "";
@@ -49,7 +51,7 @@ public class EsipDemoQA {
         System.out.println(requestString );
         Response response = given().header(header)
                 .and().body(requestString)
-                .when().post(PATIENT_CREATE_URL);
+                .when().post(ENDPOINT_SOURCE_CREATE_PATIENT);
         assertEquals(200, response.statusCode());
         logger.info("Successfully connected to Server | Status code is: 200");
         patientID = response.asString().split(" - ")[1];
@@ -57,10 +59,10 @@ public class EsipDemoQA {
         System.out.println("");
         logger.info("Attempting to connect to database #1 and find newly created Patient by it's id: " + patientID);
         response = given().header(header)
-                .when().get(GET_PATIENT_SERVER_URL + patientID);
+                .when().get(ENDPOINT_SOURCE_GET_PATIENT + patientID);
         assertEquals(200, response.statusCode());
         logger.info("Successfully connected to Server | Status code is: 200");
-        logger.info("Patien with id: " + patientID + " has below deatails:");
+        logger.info("Patien with id: " + patientID + " has below details:");
         System.out.println("");
         System.out.println(response.asString());
         System.out.println("");
