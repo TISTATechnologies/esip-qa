@@ -1,18 +1,21 @@
 package demo;
+
+import com.github.javafaker.Faker;
+import io.restassured.http.Header;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import static io.restassured.RestAssured.*;
-import static org.junit.Assert.assertEquals;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.junit.Test;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Random;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.junit.Test;
-import com.github.javafaker.Faker;
-import io.restassured.http.Header;
-import io.restassured.path.json.JsonPath;
+
+import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertEquals;
 public class EsipDemoQA {
     private static String log4j2ConfigFile = "./Properties/log4j2.xml";
     private static String API_SOURCE_SERVER_HOST = "http://52.202.77.60:9090/esip/v1/";
