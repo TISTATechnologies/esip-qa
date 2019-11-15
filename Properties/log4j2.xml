@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration>
+<Configuration status="WARN">
+	<Appenders>
+		<File fileName="logs/InfoLogs.log" name="infoFile" append="false">
+			<PatternLayout
+				pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} | %c{1} %L - %msg%n" />
+		</File>
+		<File fileName="logs/ErrorLogs.log" name="errorFile" append="false">
+			<PatternLayout
+				pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} | %l - %msg%n" />
+		</File>
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} | %c{1} %L - %msg%n" />
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Root level="DEBUG">
+			<AppenderRef level="DEBUG" ref="infoFile" />
+			<AppenderRef level="ERROR" ref="errorFile" />
+			<AppenderRef level="DEBUG" ref="STDOUT" />
+		</Root>
+	</Loggers>
+</Configuration>

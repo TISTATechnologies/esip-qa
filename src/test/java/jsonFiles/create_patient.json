@@ -1,0 +1,9 @@
+{
+  "firstName": "@@FirstName@@",
+  "lastName": "@@LastName@@",
+  "middleName": "@@MiddleName@@",
+  "dateOfBirth": "@@dateOfBirth@@",
+  "emailId": "@@email@@",
+  "gender": "f",
+  "race": "any"
+}
