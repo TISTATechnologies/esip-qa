@@ -1,14 +1,16 @@
-# java-selenium-cucumber
+# ESIP-QA 
 
-**Overview**
-This repo consists of the automation scripts for the UI testing. 
-Scripts were built using Java as a programming language + Cucumber, Selenium and Page Object Model structure.
+The purpose of this project is to validate that replication occurs between 2 oracle databases that are synchronized 
+using SymmetricDS.  
 
-**Info**
-To exclude info/error logger from report - open configuration.properties and change the value of writeInfoLogsToReport/writeErrorLogsToReport to 'false'!
+<u>EsipDemoQA</u> 
 
-**Tools**
-MousePos.exe(located under "src\main\recources\Tools") is used for locating X and Y mouse positions.
+This class contains the JUnit test that will post a patient's data (randomized by Java-faker API) to the 
+Patient table, then validates that the file was posted by id.  After this, a call is made to validate
+that the data synchronized to the database.  
 
-**Execution**
-Sample Command to execute the tests from command line: mvn clean test -Dcucumber.options="--tags @TAGNAME"
+In order to run the test, please run: 
+
+mvn verify
+
+This will generate the logs in the console.  
