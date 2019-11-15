@@ -77,7 +77,7 @@ public class EsipDemoQA {
         System.out.println("");
         logger.info("Attempting to connect to database #2 and find newly created Patient by it's id: " + patientID);
         response = given().header(header)
-               .when().get(GET_PATIENT_CLIENT_URL + patientID);
+               .when().get(ENDPOINT_TARGET_GET_PATIENT + patientID);
         assertEquals(200, response.statusCode());
         logger.info("Successfully connected to Server | Status code is: 200");
         logger.info("Patien with id: " + patientID + " has below deatails:");
