@@ -45,6 +45,11 @@ public class EsipDemoQA {
                     (int) LocalDate.of(2019, 1, 1).toEpochDay()
                             - (int) LocalDate.of(1900, 1, 1).toEpochDay());
     System.out.println("");
+    try {
+      Thread.sleep(5000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
     System.out.println("RUNNING THE MICROSERVICE TESTS");
     firstName = faker.name().firstName();
     lastName = faker.name().lastName();
@@ -104,7 +109,7 @@ public class EsipDemoQA {
     logger.info("Attempting to connect to database #2: https://eko2nk4gfl.execute-api.us-east-1.amazonaws.com");
     logger.info("Finding newly created Patient by it's id: " + patientID);
     try {
-      Thread.sleep(10000);
+      Thread.sleep(15000);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
