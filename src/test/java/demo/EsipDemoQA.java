@@ -63,8 +63,8 @@ public class EsipDemoQA {
                     .replace("@@MiddleName@@", middleName)
                     .replace("@@dateOfBirth@@", dateOfBirth)
                     .replace("@@email@@", email);
-    logger.info(
-            "Attempting to connect to Miscroservices server and create a new Patient where Request body is: ");
+    logger.info("Attempting to connect to server https://wpf9abnloj.execute-api.us-east-1.amazonaws.com");
+    logger.info("Creating a new Patient where Request body is: ");
     System.out.println(requestString);
     /*
      *
@@ -89,9 +89,8 @@ public class EsipDemoQA {
      * SERVER 1 GET REQUEST - RETRIEVING THE POST REQUEST RECORD.
      *
      * */
-    logger.info(
-            "Attempting to connect to database #1 and find newly created Patient by it's id: "
-                    + patientID);
+    logger.info("Attempting to connect to database #1: https://wpf9abnloj.execute-api.us-east-1.amazonaws.com");
+    logger.info("Finding newly created Patient by it's id: " + patientID);
     response = given().header(header).when().get(ENDPOINT_SOURCE_GET_PATIENT + patientID);
     assertEquals(200, response.statusCode());
     logger.info("Successfully connected to Server | Status code is: " + response.statusCode());
@@ -102,9 +101,8 @@ public class EsipDemoQA {
     logger.warn("Middle Name is equal to: " + jPath.getString("middleName"));
     logger.warn("Last Name is equal to: " + jPath.getString("lastName"));
     logger.warn("Date Of Birth is equal to: " + jPath.getString("dateOfBirth"));
-    logger.info(
-            "Attempting to connect to database #2 and find newly created Patient by it's id: "
-                    + patientID);
+    logger.info("Attempting to connect to database #2: https://eko2nk4gfl.execute-api.us-east-1.amazonaws.com");
+    logger.info("Finding newly created Patient by it's id: " + patientID);
     try {
       Thread.sleep(10000);
     } catch (InterruptedException e) {
