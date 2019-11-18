@@ -66,7 +66,6 @@ public class EsipDemoQA {
         logger.info("Successfully connected to HAPI Server | Status code is: 200");
         patientID = response.asString().split(" - ")[1];
         logger.info("New Patient has been successfully created with id: " + patientID);
-        System.out.println("");
         logger.info("Attempting to connect to database #1 and find newly created Patient by it's id: " + patientID);
         /*
          *
@@ -77,16 +76,13 @@ public class EsipDemoQA {
                 .when().get(ENDPOINT_SOURCE_GET_PATIENT + patientID);
         assertEquals(200, response.statusCode());
         logger.info("Successfully connected to Server | Status code is: 200");
-        logger.info("Patien with id: " + patientID + " has below details:");
-        System.out.println("");
+        logger.info("Patient with id: " + patientID + " has below details:");
         System.out.println(response.asString());
-        System.out.println("");
         JsonPath jPath = new JsonPath(response.asString());
         logger.warn("First Name is equal to: " + jPath.getString("firstName"));
         logger.warn("Middle Name is equal to: " + jPath.getString("middleName"));
         logger.warn("Last Name is equal to: " + jPath.getString("lastName"));
         logger.warn("Date Of Birth is equal to: " + jPath.getString("dateOfBirth"));
-        System.out.println("");
         /*
          *
          * SERVER 2 Verification SHOWING REPLICATION
@@ -97,10 +93,8 @@ public class EsipDemoQA {
                .when().get(ENDPOINT_TARGET_GET_PATIENT + patientID);
         assertEquals(200, response.statusCode());
         logger.info("Successfully connected to Server | Status code is: 200");
-        logger.info("Patient with id: " + patientID + " has below deatails:");
-        System.out.println("");
+        logger.info("Patient with id: " + patientID + " has below details:");
         System.out.println(response.asString());
-        System.out.println("");
         jPath = new JsonPath(response.asString());
         logger.warn("First Name is equal to: " + jPath.getString("firstName"));
         logger.warn("Middle Name is equal to: " + jPath.getString("middleName"));
@@ -115,6 +109,7 @@ public class EsipDemoQA {
         Faker faker = new Faker();
         Random random = new Random();
         long randomDay = (int) LocalDate.of(1900, 1, 1).toEpochDay() + random.nextInt((int) LocalDate.of(2019, 1, 1).toEpochDay() - (int) LocalDate.of(1900, 1, 1).toEpochDay());
+        System.out.println("");
         System.out.println("RUNNING THE MICROSERVICE TESTS");
         firstName = faker.name().firstName();
         lastName = faker.name().lastName();
@@ -145,7 +140,6 @@ public class EsipDemoQA {
         logger.info("Successfully connected to Microservice Server | Status code is: 200");
         patientID = response.asString().split(" - ")[1];
         logger.info("New Patient has been successfully created with id: " + patientID);
-        System.out.println("");
 
         /*
          *
@@ -158,15 +152,12 @@ public class EsipDemoQA {
         assertEquals(200, response.statusCode());
         logger.info("Successfully connected to Server | Status code is: 200");
         logger.info("Patient with id: " + patientID + " has below details:");
-        System.out.println("");
         System.out.println(response.asString());
-        System.out.println("");
         JsonPath jPath = new JsonPath(response.asString());
         logger.warn("First Name is equal to: " + jPath.getString("firstName"));
         logger.warn("Middle Name is equal to: " + jPath.getString("middleName"));
         logger.warn("Last Name is equal to: " + jPath.getString("lastName"));
         logger.warn("Date Of Birth is equal to: " + jPath.getString("dateOfBirth"));
-        System.out.println("");
         logger.info("Attempting to connect to database #2 and find newly created Patient by it's id: " + patientID);
 
         /*
@@ -179,9 +170,7 @@ public class EsipDemoQA {
         assertEquals(200, response.statusCode());
         logger.info("Successfully connected to Server | Status code is: 200");
         logger.info("Patient with id: " + patientID + " has below deatails:");
-        System.out.println("");
         System.out.println(response.asString());
-        System.out.println("");
         jPath = new JsonPath(response.asString());
         logger.warn("First Name is equal to: " + jPath.getString("firstName"));
         logger.warn("Middle Name is equal to: " + jPath.getString("middleName"));
