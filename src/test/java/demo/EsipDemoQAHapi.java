@@ -16,7 +16,7 @@ import java.util.Random;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
-public class EsipDemoQA {
+public class EsipDemoQAHapi {
     private static String log4j2ConfigFile = "./Properties/log4j2.xml";
     private static String API_SOURCE_SERVER_HOST = "http://52.202.77.60:9090/esip/v1/";
     private static String API_TARGET_SERVER_HOST = "http://3.133.161.132:9090/esip/v1/";
@@ -50,13 +50,13 @@ public class EsipDemoQA {
         String requestString = convertRequestToString("./src/test/java/jsonFiles/create_patient.json")
                 .replace("@@FirstName@@", firstName).replace("@@LastName@@", lastName).replace("@@MiddleName@@", middleName)
                 .replace("@@dateOfBirth@@", dateOfBirth).replace("@@email@@", email);
-        logger.info("Attempting to connect to server and create a new Patient where Request body is: ");
+        logger.info("Attempting to connect to Hapi FHIR server and create a new Patient where Request body is: ");
         System.out.println(requestString );
         Response response = given().header(header)
                 .and().body(requestString)
                 .when().post(ENDPOINT_SOURCE_CREATE_PATIENT);
         assertEquals(200, response.statusCode());
-        logger.info("Successfully connected to Server | Status code is: 200");
+        logger.info("Successfully connected to HAPI Server | Status code is: 200");
         patientID = response.asString().split(" - ")[1];
         logger.info("New Patient has been successfully created with id: " + patientID);
         System.out.println("");
